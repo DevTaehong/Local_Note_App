@@ -1,4 +1,5 @@
-﻿using LocalNote.Commands;
+﻿using Assignment2;
+using LocalNote.Commands;
 using LocalNote.Dialogs;
 using LocalNote.Models;
 using LocalNote.ViewModels;
@@ -92,13 +93,12 @@ namespace LocalNote
             EditButton.IsEnabled = true;
             SaveButton.IsEnabled = false;
             this.Focus(FocusState.Programmatic);
-            NoteContentTextBox.Text = "";
+
         }
 
-        private async void AboutAppBarButton_Click(object sender, RoutedEventArgs e)
+        private void AboutAppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            AboutDialog aboutDialog = new AboutDialog();
-            await aboutDialog.ShowAsync();
+            Frame.Navigate(typeof(About));
         }
 
         private void ExitAppBarButton_Click(object sender, RoutedEventArgs e)

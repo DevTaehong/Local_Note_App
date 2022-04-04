@@ -30,16 +30,16 @@
     <Page.TopAppBar>
         <CommandBar>
             <CommandBar.Content>
-                <TextBlock x:Name="commandBarLable" Text="{x:Bind NoteViewModel.SelectedNoteTitles, Mode=TwoWay}" Margin="10" x:FieldModifier="public"></TextBlock>
+                <TextBlock  x:Name="commandBarLable" Text="{x:Bind NoteViewModel.SelectedNoteTitles, Mode=TwoWay}" Margin="10" x:FieldModifier="public"></TextBlock>
             </CommandBar.Content>
-            <AppBarButton Icon="Add" Click="AddAppBarButton_Click" Label="Add" Command="{x:Bind NoteViewModel.AddCommand}"></AppBarButton>
-            <AppBarButton x:Name="SaveButton" Click="SaveButton_Click" Icon="Save" Label="Save" Command="{x:Bind NoteViewModel.saveCommand}"></AppBarButton>
-            <AppBarButton x:Name="EditButton" Icon="Edit" Label="Edit" Click="EditAppBarButton_Click" IsEnabled="False"></AppBarButton>
+            <AppBarButton ToolTipService.ToolTip="Add a note" Icon="Add" Click="AddAppBarButton_Click" Label="Add" Command="{x:Bind NoteViewModel.AddCommand}"></AppBarButton>
+            <AppBarButton ToolTipService.ToolTip="Save a note" x:Name="SaveButton" Click="SaveButton_Click" Icon="Save" Label="Save" Command="{x:Bind NoteViewModel.saveCommand}"></AppBarButton>
+            <AppBarButton ToolTipService.ToolTip="Edit a note" x:Name="EditButton" Icon="Edit" Label="Edit" Click="EditAppBarButton_Click" IsEnabled="False"></AppBarButton>
             <AppBarSeparator></AppBarSeparator>
-            <AppBarButton x:Name="DeleteButton" Icon="Delete" IsEnabled="False"  Label="Delete" Click="DeleteAppBarButton_Click" Command="{x:Bind NoteViewModel.deleteCommand}"></AppBarButton>
+            <AppBarButton ToolTipService.ToolTip="Delete a note" x:Name="DeleteButton" Icon="Delete" IsEnabled="False"  Label="Delete" Click="DeleteAppBarButton_Click" Command="{x:Bind NoteViewModel.deleteCommand}"></AppBarButton>
             <CommandBar.SecondaryCommands>
-                <AppBarButton Label="About" Click="AboutAppBarButton_Click"></AppBarButton>
-                <AppBarButton Label="Exit" Click="ExitAppBarButton_Click"></AppBarButton>
+                <AppBarButton ToolTipService.ToolTip="About this app" Label="About" Click="AboutAppBarButton_Click"></AppBarButton>
+                <AppBarButton ToolTipService.ToolTip="Exit this app" Label="Exit" Click="ExitAppBarButton_Click"></AppBarButton>
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.TopAppBar>
@@ -54,7 +54,7 @@
             <RowDefinition Height="500"/>
         </Grid.RowDefinitions>
 
-        <ScrollViewer Grid.Row="2" Grid.Column="0" Margin="5,5,5,5" Grid.RowSpan="2">
+        <ScrollViewer Grid.Row="2" Grid.Column="0" Margin="5,5,5,5" Grid.RowSpan="2" ToolTipService.ToolTip="Scroll this viewer">
             <ListView x:Name="MylistView" ItemsSource="{Binding Source={StaticResource NotesCollection}}"
                       ItemTemplate="{StaticResource NotesTemplate}"
                       SelectedItem="{x:Bind NoteViewModel.SelectedTitle, Mode=TwoWay}" 
@@ -66,7 +66,7 @@
                      PlaceholderText="Type your note here..."  TextWrapping="Wrap" IsTabStop="True" IsTapEnabled="True"
                  Margin="5,5,5,245" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" x:FieldModifier="public"/>
         
-        <TextBox x:Name="FilterTextBox"
+        <TextBox x:Name="FilterTextBox" ToolTipService.ToolTip="Type text here for search"
                  Text="{x:Bind NoteViewModel.Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  PlaceholderText="Search..." Margin="5" Grid.RowSpan="1" Grid.Row="0" Grid.Column="0" FontSize="17" />
     </Grid>
