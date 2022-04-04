@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment2", "Assignment2\Assignment2.csproj", "{E10B9DF4-EB2B-4B47-B29E-C6347B709358}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalNote", "Assignment2\LocalNote.csproj", "{E10B9DF4-EB2B-4B47-B29E-C6347B709358}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTestProject\UnitTestProject.csproj", "{06F136FC-C6B7-4264-9633-E1285AF34081}"
 EndProject

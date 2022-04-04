@@ -157,9 +157,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Assignment2\Assignment2.csproj">
+    <ProjectReference Include="..\Assignment2\LocalNote.csproj">
       <Project>{e10b9df4-eb2b-4b47-b29e-c6347b709358}</Project>
-      <Name>Assignment2</Name>
+      <Name>LocalNote</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

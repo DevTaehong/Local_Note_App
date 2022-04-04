@@ -92,6 +92,7 @@ namespace Assignment2
             EditButton.IsEnabled = true;
             SaveButton.IsEnabled = false;
             this.Focus(FocusState.Programmatic);
+            NoteContentTextBox.Text = "";
         }
 
         private async void AboutAppBarButton_Click(object sender, RoutedEventArgs e)
