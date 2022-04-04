@@ -32,6 +32,7 @@ namespace LocalNote.ViewModels
         public AddCommand AddCommand { get; }
         public NoteRepo2 NoteRepo = new NoteRepo2();
         
+        
 
         // Constructor
         public NoteViewModel()
@@ -44,6 +45,11 @@ namespace LocalNote.ViewModels
 
             PerformFiltering();
             NoteRepo.ReadFile(Titles, _allTitles);
+        }
+
+        private void AddCommand_CanExecuteChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void EditCommand_OnNoteEdited(object sender, EventArgs e)
