@@ -29,7 +29,6 @@ namespace LocalNote.ViewModels
         public string SelectedNoteTitles { get; set; }
         private TitleModel _selectedTitle;
         private string _filter;
-        public AddCommand AddCommand { get; }
         public NoteRepo2 NoteRepo = new NoteRepo2();
         
         
@@ -42,9 +41,10 @@ namespace LocalNote.ViewModels
             deleteCommand.OnNoteDeleted += DeleteCommand_OnNoteDeleted;
             saveCommand.OnNoteCreated += SaveCommand_OnNoteCreated;
             saveCommand.OnNoteEdited += EditCommand_OnNoteEdited;
+            SelectedNoteTitles = "Untitled Note";
 
             PerformFiltering();
-            NoteRepo.ReadFile(Titles, _allTitles);
+            //NoteRepo.ReadFile(Titles, _allTitles);
         }
 
         private void AddCommand_CanExecuteChanged(object sender, EventArgs e)

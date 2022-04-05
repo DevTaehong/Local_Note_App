@@ -34,6 +34,7 @@ namespace LocalNote
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            Repositories2.DataRepo.InitializeDatabase();
         }
 
         /// <summary>

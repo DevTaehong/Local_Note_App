@@ -61,7 +61,7 @@ namespace LocalNote.Commands
                     // Code to do the saving...
                     try
                     {
-                        Repositories2.NoteRepo2.SaveNotesToFile(snd.newNoteTitle);
+                        Repositories2.DataRepo.AddData(snd.newNoteTitle, App.ContentTextBox);
 
                         TheTitle = snd.title;
                         OnNoteCreated?.Invoke(this, new EventArgs());

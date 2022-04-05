@@ -2,6 +2,7 @@
 using LocalNote.Commands;
 using LocalNote.Dialogs;
 using LocalNote.Models;
+using LocalNote.Repositories2;
 using LocalNote.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,7 @@ namespace LocalNote
             
             NoteViewModel = new NoteViewModel();
             NoteContentTextBox.Focus(FocusState.Programmatic);
+            MylistView.ItemsSource = DataRepo.GetData();
         }
 
         public void EditAppBarButton_Click(object sender, RoutedEventArgs e)
@@ -80,6 +82,7 @@ namespace LocalNote
             NoteContentTextBox.Focus(FocusState.Programmatic);
             SaveButton.IsEnabled = true;
             EditButton.IsEnabled = false;
+            AddButton.IsEnabled = false;
         }
         private void DeleteAppBarButton_Click(object sender, RoutedEventArgs e)
         {
@@ -93,7 +96,7 @@ namespace LocalNote
             EditButton.IsEnabled = true;
             SaveButton.IsEnabled = false;
             this.Focus(FocusState.Programmatic);
-
+            AddButton.IsEnabled = true;
         }
 
         private void AboutAppBarButton_Click(object sender, RoutedEventArgs e)
