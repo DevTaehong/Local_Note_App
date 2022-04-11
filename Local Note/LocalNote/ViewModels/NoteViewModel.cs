@@ -67,6 +67,7 @@ namespace LocalNote.ViewModels
             // source: https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.contains?view=net-6.0
             TitleModel title =_allTitles.Find(x => x.NoteTitle.Contains(App.CommandBarLable));
             Titles.Remove(title);
+            _allTitles.Remove(title);
         }
 
         //This event fires when the saveCommand object raises it's "A new note was created" event.
@@ -83,7 +84,7 @@ namespace LocalNote.ViewModels
                         Title = "Saving failed.",
                         PrimaryButtonText = "OK"
                     };
-                    await failDialog.ShowAsync(); ;
+                    await failDialog.ShowAsync();
                 }
                 else
                 {

@@ -76,7 +76,7 @@
                      PlaceholderText="Type your note here..."  TextWrapping="Wrap" IsTabStop="True" IsTapEnabled="True"
                  Margin="5,5,5,245" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" x:FieldModifier="public"/>
         
-        <TextBox x:Name="FilterTextBox" ToolTipService.ToolTip="Type text here for search"
+        <TextBox x:Name="FilterTextBox" ToolTipService.ToolTip="Type text here for search" TextChanging="FilterTextBox_TextChanging"
                  Text="{x:Bind NoteViewModel.Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  PlaceholderText="Search..." Margin="5" Grid.RowSpan="1" Grid.Row="0" Grid.Column="0" FontSize="17" />
     </Grid>

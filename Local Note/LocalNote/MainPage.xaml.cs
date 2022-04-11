@@ -38,6 +38,12 @@ namespace LocalNote
             this.InitializeComponent(); 
             
             NoteViewModel = new NoteViewModel();
+            this.Loaded += UserControl_Loaded;
+        }
+
+        // Source: https://stackoverflow.com/questions/49513789/issue-with-setting-the-focus-for-textbox
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
             NoteContentTextBox.Focus(FocusState.Programmatic);
         }
 
@@ -58,7 +64,6 @@ namespace LocalNote
             NoteContentTextBox.IsReadOnly = true;
             SaveButton.IsEnabled= false;
             DeleteButton.IsEnabled = true;
-
             var listView = sender as ListView;
             if (e.ClickedItem == listView.SelectedItem)
             {
@@ -81,7 +86,6 @@ namespace LocalNote
             NoteContentTextBox.Focus(FocusState.Programmatic);
             SaveButton.IsEnabled = true;
             EditButton.IsEnabled = false;
-            AddButton.IsEnabled = false;
         }
 
         private void DeleteAppBarButton_Click(object sender, RoutedEventArgs e)
@@ -94,7 +98,6 @@ namespace LocalNote
             // Source: https://social.msdn.microsoft.com/Forums/sqlserver/en-US/448127b7-9958-434f-97c5-67844a7f2e5b/how-to-declare-dynamic-global-variable-in-appxamlcs-or-session-mgmt-replacement-in-silverlight?forum=silverlightstart
             App.ContentTextBox = NoteContentTextBox.Text;
             NoteContentTextBox.IsReadOnly = true;
-            EditButton.IsEnabled = true;
             SaveButton.IsEnabled = false;
             this.Focus(FocusState.Programmatic);
             AddButton.IsEnabled = true;
@@ -102,8 +105,12 @@ namespace LocalNote
             {
                 App.savingExistingNote = false;
             }
-            else { App.savingExistingNote = true; }
+            else 
+            { 
+                App.savingExistingNote = true;
+            }
             NoteContentTextBox.Text = "";
+            MylistView.SelectedItem = null;
         }
 
         private void AboutAppBarButton_Click(object sender, RoutedEventArgs e)
@@ -111,5 +118,9 @@ namespace LocalNote
             Frame.Navigate(typeof(About));
         }
 
+        private void FilterTextBox_TextChanging(TextBox sender, TextBoxTextChangingEventArgs args)
+        {
+            EditButton.IsEnabled = false;
+        }
     }
 }

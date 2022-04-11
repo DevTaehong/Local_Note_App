@@ -52,6 +52,29 @@ namespace LocalNote.Repositories2
                 db.Close();
             }
         }
+        public static void EditNotes(string editedText)
+        {
+            try
+            {
+                string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "Note.db");
+                using (SqliteConnection db = new SqliteConnection($"Filename={dbpath}"))
+                {
+                    db.Open();
+                    SqliteCommand updateCommand = new SqliteCommand();
+                    updateCommand.Connection = db;
+                    // Use parameterized query to prevent SQL injection attacks
+                    updateCommand.CommandText = "UPDATE NoteTable SET Text = @Text WHERE Title = @Title;";
+                    updateCommand.Parameters.AddWithValue("@Title", App.EditNoteName);
+                    updateCommand.Parameters.AddWithValue("@Text", editedText);
+                    updateCommand.ExecuteReader();
+                    db.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+        }
 
         //Get a list of all records from the database
         public static void GetData(ObservableCollection<TitleModel> titles, List<TitleModel> _allTitles)
@@ -79,6 +102,31 @@ namespace LocalNote.Repositories2
                 Debug.WriteLine(ex.Message);
             }
         }
+
+        public static void DeleteNotes(string noteName)
+        {
+            try
+            {
+                string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "Note.db");
+                using (SqliteConnection db = new SqliteConnection($"Filename={dbpath}"))
+                {
+                    db.Open();
+                    SqliteCommand deleteCommand = new SqliteCommand();
+                    deleteCommand.Connection = db;
+                    // Use parameterized query to prevent SQL injection attacks
+                    deleteCommand.CommandText = "DELETE FROM NoteTable WHERE Title = @Title;";
+                    deleteCommand.Parameters.AddWithValue("@Title", noteName);
+                    deleteCommand.ExecuteReader();
+                    db.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+        }
+
+
 
     }
 }

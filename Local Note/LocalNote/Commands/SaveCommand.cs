@@ -44,9 +44,8 @@ namespace LocalNote.Commands
                 {
                     try
                     {
-                        Repositories2.NoteRepo2.EditNotes(App.ContentTextBox);
-
-                        OnNoteEdited.Invoke(this, new EventArgs());
+                        Repositories2.DataRepo.EditNotes(App.ContentTextBox);
+                        OnNoteEdited?.Invoke(this, new EventArgs());
                     }
                     catch (Exception ex)
                     {
@@ -72,7 +71,13 @@ namespace LocalNote.Commands
                     }
                     catch (Exception)
                     {
-                        Debug.WriteLine("File save error occurred!");
+                        ContentDialog failDialog = new ContentDialog()
+                        {
+                            Content = "Cannot have two notes with the same name.",
+                            Title = "Saving failed.",
+                            PrimaryButtonText = "OK"
+                        };
+                        await failDialog.ShowAsync();
                     }
                 }
             }

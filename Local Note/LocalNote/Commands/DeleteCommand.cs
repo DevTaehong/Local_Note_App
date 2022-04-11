@@ -31,7 +31,7 @@ namespace LocalNote.Commands
             {
                 try
                 {
-                    Repositories2.NoteRepo2.DeleteNotes(App.CommandBarLable);
+                    Repositories2.DataRepo.DeleteNotes(App.CommandBarLable);
                     OnNoteDeleted?.Invoke(this, new EventArgs());
                 }
                 catch (Exception ex)
