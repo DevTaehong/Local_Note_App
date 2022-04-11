@@ -30,6 +30,7 @@ namespace LocalNote
         public static String ContentTextBox { get; set; }
         public static String CommandBarLable { get; set; }
         public static string EditNoteName { get; set; }
+        public static bool savingExistingNote { get; set; }
         public App()
         {
             this.InitializeComponent();

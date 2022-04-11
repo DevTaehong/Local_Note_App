@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LocalNote.Models;
 using Microsoft.Data.Sqlite;
 using Windows.Storage;
 
@@ -51,23 +54,30 @@ namespace LocalNote.Repositories2
         }
 
         //Get a list of all records from the database
-        public static List<String> GetData()
+        public static void GetData(ObservableCollection<TitleModel> titles, List<TitleModel> _allTitles)
         {
-            List<String> entries = new List<string>();
-            string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "Note.db");
-            using (SqliteConnection db = new SqliteConnection($"Filename={dbpath}"))
+            try
             {
-                db.Open();
-                SqliteCommand selectCommand = new SqliteCommand
-                    ("SELECT Title from NoteTable", db);
-                SqliteDataReader query = selectCommand.ExecuteReader();
-                while (query.Read())
-                { 
-                    entries.Add(query.GetString(0)); 
+                string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "Note.db");
+                using (SqliteConnection db = new SqliteConnection($"Filename={dbpath}"))
+                {
+                    db.Open();
+                    SqliteCommand selectCommand = new SqliteCommand
+                        ("SELECT Title, Text from NoteTable", db);
+                    SqliteDataReader query = selectCommand.ExecuteReader();
+                    while (query.Read())
+                    {
+                        TitleModel titleModel = new TitleModel(query.GetString(0), new TextModel(query.GetString(0 + 1)));
+                        titles.Add(titleModel);
+                        _allTitles.Add(titleModel);
+                    }
+                    db.Close();
                 }
-                db.Close();
             }
-            return entries;
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
 
     }

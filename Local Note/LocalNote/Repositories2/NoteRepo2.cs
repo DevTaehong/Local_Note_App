@@ -63,7 +63,6 @@ namespace LocalNote.Repositories2
 
         public async void ReadFile(ObservableCollection<TitleModel> titles, List<TitleModel> _allTitles)
         {
-           
             try
             {
                 IReadOnlyList<StorageFile> sortedItems = await _notesFolder.GetFilesAsync(CommonFileQuery.DefaultQuery, 0, 100);

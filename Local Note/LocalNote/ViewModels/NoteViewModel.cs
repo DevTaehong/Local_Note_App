@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assignment2.Commands;
 using LocalNote.Commands;
 using LocalNote.Models;
 using LocalNote.Repositories2;
@@ -23,6 +24,7 @@ namespace LocalNote.ViewModels
 
         public SaveCommand saveCommand = new SaveCommand();
         public DeleteCommand deleteCommand = new DeleteCommand();
+        public ExitCommand exitCommand = new ExitCommand();
         public List<TitleModel> _allTitles = new List<TitleModel>();
         public ObservableCollection<TitleModel> Titles { get; set; }
         public string SelectedNoteText { get; set; }
@@ -30,6 +32,7 @@ namespace LocalNote.ViewModels
         private TitleModel _selectedTitle;
         private string _filter;
         public NoteRepo2 NoteRepo = new NoteRepo2();
+        public DataRepo DataRepo = new DataRepo();
         
         
 
@@ -45,6 +48,7 @@ namespace LocalNote.ViewModels
 
             PerformFiltering();
             //NoteRepo.ReadFile(Titles, _allTitles);
+            DataRepo.GetData(Titles, _allTitles);
         }
 
         private void AddCommand_CanExecuteChanged(object sender, EventArgs e)

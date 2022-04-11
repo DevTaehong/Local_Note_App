@@ -36,21 +36,24 @@ namespace LocalNote.Commands
         {
 
 
-            SaveAfterEditDialog saveAfterEditDialog = new SaveAfterEditDialog();
-            ContentDialogResult EditResult = await saveAfterEditDialog.ShowAsync();
-            if (EditResult == ContentDialogResult.Primary)
+            if (App.savingExistingNote)
             {
-                try
+                SaveAfterEditDialog saveAfterEditDialog = new SaveAfterEditDialog();
+                ContentDialogResult EditResult = await saveAfterEditDialog.ShowAsync();
+                if (EditResult == ContentDialogResult.Primary)
                 {
-                    Repositories2.NoteRepo2.EditNotes(App.ContentTextBox);
-                    OnNoteEdited.Invoke(this, new EventArgs());
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex);
+                    try
+                    {
+                        Repositories2.NoteRepo2.EditNotes(App.ContentTextBox);
+
+                        OnNoteEdited.Invoke(this, new EventArgs());
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex);
+                    }
                 }
             }
-
 
             else
             {
@@ -61,6 +64,7 @@ namespace LocalNote.Commands
                     // Code to do the saving...
                     try
                     {
+                        //Repositories2.NoteRepo2.SaveNotesToFile(snd.newNoteTitle);
                         Repositories2.DataRepo.AddData(snd.newNoteTitle, App.ContentTextBox);
 
                         TheTitle = snd.title;
@@ -72,9 +76,9 @@ namespace LocalNote.Commands
                     }
                 }
             }
-                
-                
- 
+
+
+
         }
     }
 }

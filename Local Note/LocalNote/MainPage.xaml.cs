@@ -39,7 +39,6 @@ namespace LocalNote
             
             NoteViewModel = new NoteViewModel();
             NoteContentTextBox.Focus(FocusState.Programmatic);
-            MylistView.ItemsSource = DataRepo.GetData();
         }
 
         public void EditAppBarButton_Click(object sender, RoutedEventArgs e)
@@ -84,10 +83,12 @@ namespace LocalNote
             EditButton.IsEnabled = false;
             AddButton.IsEnabled = false;
         }
+
         private void DeleteAppBarButton_Click(object sender, RoutedEventArgs e)
         {
             App.CommandBarLable = commandBarLable.Text;
         }
+
         public void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             // Source: https://social.msdn.microsoft.com/Forums/sqlserver/en-US/448127b7-9958-434f-97c5-67844a7f2e5b/how-to-declare-dynamic-global-variable-in-appxamlcs-or-session-mgmt-replacement-in-silverlight?forum=silverlightstart
@@ -97,6 +98,12 @@ namespace LocalNote
             SaveButton.IsEnabled = false;
             this.Focus(FocusState.Programmatic);
             AddButton.IsEnabled = true;
+            if (MylistView.SelectedItem == null)
+            {
+                App.savingExistingNote = false;
+            }
+            else { App.savingExistingNote = true; }
+            NoteContentTextBox.Text = "";
         }
 
         private void AboutAppBarButton_Click(object sender, RoutedEventArgs e)
@@ -104,9 +111,5 @@ namespace LocalNote
             Frame.Navigate(typeof(About));
         }
 
-        private void ExitAppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Exit();
-        }
     }
 }

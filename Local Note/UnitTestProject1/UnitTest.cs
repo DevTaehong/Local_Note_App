@@ -33,5 +33,32 @@ namespace UnitTestProject1
 
             Assert.AreNotEqual(true, notExsits);
         }
+
+        [TestMethod]
+        public void TestIfNoteContainsString()
+        {
+            TitleModel titleModel = new TitleModel("title", new TextModel("text"));
+
+
+            StringAssert.Contains(titleModel.NoteTitle, "title");
+        }
+
+        [TestMethod]
+        public void TestIsNotNullNote()
+        {
+            TitleModel titleModel = new TitleModel("title", new TextModel("text"));
+
+
+            Assert.IsNotNull(titleModel);
+        }
+
+        [TestMethod]
+        public void TestIsInstanceCorrectNote()
+        {
+            TitleModel titleModel = new TitleModel("title", new TextModel("text"));
+
+
+            Assert.IsInstanceOfType(titleModel, typeof(TitleModel));
+        }
     }
 }

@@ -32,14 +32,14 @@
             <CommandBar.Content>
                 <TextBlock  x:Name="commandBarLable" Text="{x:Bind NoteViewModel.SelectedNoteTitles, Mode=TwoWay}" Margin="10" x:FieldModifier="public"></TextBlock>
             </CommandBar.Content>
-            <AppBarButton ToolTipService.ToolTip="Add a note" x:Name="AddButton" IsEnabled="False" Icon="Add" Click="AddAppBarButton_Click" Label="Add"></AppBarButton>
-            <AppBarButton ToolTipService.ToolTip="Save a note" x:Name="SaveButton" Click="SaveButton_Click" Icon="Save" Label="Save" Command="{x:Bind NoteViewModel.saveCommand}"></AppBarButton>
-            <AppBarButton ToolTipService.ToolTip="Edit a note" x:Name="EditButton" Icon="Edit" Label="Edit" Click="EditAppBarButton_Click" IsEnabled="False"></AppBarButton>
+            <AppBarButton x:Name="AddButton" Icon="Add" Click="AddAppBarButton_Click" Label="Add"></AppBarButton>
+            <AppBarButton x:Name="SaveButton" Click="SaveButton_Click" Icon="Save" Label="Save" Command="{x:Bind NoteViewModel.saveCommand}"></AppBarButton>
+            <AppBarButton x:Name="EditButton" Icon="Edit" Label="Edit" Click="EditAppBarButton_Click" IsEnabled="False"></AppBarButton>
             <AppBarSeparator></AppBarSeparator>
-            <AppBarButton ToolTipService.ToolTip="Delete a note" x:Name="DeleteButton" Icon="Delete" IsEnabled="False"  Label="Delete" Click="DeleteAppBarButton_Click" Command="{x:Bind NoteViewModel.deleteCommand}"></AppBarButton>
+            <AppBarButton x:Name="DeleteButton" Icon="Delete" IsEnabled="False"  Label="Delete" Click="DeleteAppBarButton_Click" Command="{x:Bind NoteViewModel.deleteCommand}"></AppBarButton>
             <CommandBar.SecondaryCommands>
-                <AppBarButton ToolTipService.ToolTip="About this app" Label="About" Click="AboutAppBarButton_Click"></AppBarButton>
-                <AppBarButton ToolTipService.ToolTip="Exit this app" Label="Exit" Click="ExitAppBarButton_Click"></AppBarButton>
+                <AppBarButton Label="About" Click="AboutAppBarButton_Click"></AppBarButton>
+                <AppBarButton Label="Exit" Command="{x:Bind NoteViewModel.exitCommand}"></AppBarButton>
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.TopAppBar>
@@ -55,12 +55,12 @@
         </Grid.RowDefinitions>
 
         <ScrollViewer Grid.Row="2" Grid.Column="0" Margin="5,5,5,5" Grid.RowSpan="2" ToolTipService.ToolTip="Scroll this viewer">
-            <!--<ListView x:Name="MylistView" ItemsSource="{Binding Source={StaticResource NotesCollection}}"
+            <ListView x:Name="MylistView" ItemsSource="{Binding Source={StaticResource NotesCollection}}"
                       ItemTemplate="{StaticResource NotesTemplate}"
                       SelectedItem="{x:Bind NoteViewModel.SelectedTitle, Mode=TwoWay}" 
                       SelectionMode="Single" ItemClick="listViewItem_ItemClick" IsItemClickEnabled="True">
-            </ListView>-->
-            <ListView x:Name="MylistView" SelectedItem="{x:Bind NoteViewModel.SelectedTitle, Mode=TwoWay}" 
+            </ListView>
+            <!--<ListView x:Name="MylistView" SelectedItem="{x:Bind NoteViewModel.SelectedTitle, Mode=TwoWay}" 
                       SelectionMode="Single" ItemClick="listViewItem_ItemClick" IsItemClickEnabled="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -69,7 +69,7 @@
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
+            </ListView>-->
         </ScrollViewer>
         <!--https://stackoverflow.com/questions/46773662/set-focus-to-usercontrol-c-uwp-->
         <TextBox x:Name="NoteContentTextBox" FontSize="32" Text="{x:Bind NoteViewModel.SelectedNoteText, Mode=TwoWay}" 

@@ -123,6 +123,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Commands\DeleteCommand.cs" />
+    <Compile Include="Commands\ExitCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
     <Compile Include="Dialogs\AboutDialog.xaml.cs">
       <DependentUpon>AboutDialog.xaml</DependentUpon>
