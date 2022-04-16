@@ -137,6 +137,7 @@ namespace LocalNote.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Filter"));
             }
         }
+
         private void PerformFiltering()
         {
             if (_filter == null)
@@ -147,7 +148,7 @@ namespace LocalNote.ViewModels
             //Lower-case and trim string
             var lowerCaseFilter = Filter.ToLowerInvariant().Trim();
 
-            //Use LINQ query to get all personmodel names that match filter text, as a list
+            //Use LINQ query to get all notemodel names that match filter text, as a list
             var result =
                 _allTitles.Where(d => d.NotesAsString.ToLowerInvariant()
                 .Contains(lowerCaseFilter))
