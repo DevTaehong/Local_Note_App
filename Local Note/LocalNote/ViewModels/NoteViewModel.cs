@@ -51,10 +51,6 @@ namespace LocalNote.ViewModels
             DataRepo.GetData(Titles, _allTitles);
         }
 
-        private void AddCommand_CanExecuteChanged(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
         private void EditCommand_OnNoteEdited(object sender, EventArgs e)
         {
